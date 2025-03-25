@@ -12,3 +12,5 @@ Each folder corresponds to a visualization in the Hello, Black World project. Th
 **health-dist**: *Health and Income Across Race*
 
 **homeownership**: *Homeownership Across Race*
+
+**webtext**: *The Hello, Black World full webtext*
