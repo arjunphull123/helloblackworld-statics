@@ -1,0 +1,536 @@
+* {
+  margin: 0;
+  scroll-behavior: smooth;
+}
+
+@font-face {
+  font-family: 'VTC Du Bois';
+  src: url('fonts/VTCDuBois-Regular.woff2') format('woff2'),
+       url('fonts/VTCDuBois-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'VTC Du Bois';
+  src: url('fonts/VTCDuBois-Bold.woff2') format('woff2'),
+       url('fonts/VTCDuBois-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.625rem;
+  background-color: #FFE8DA;
+}
+
+.header {
+  display: flex;
+  /*width: 71.875rem;*/
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.625rem;
+  position: sticky;
+  top: 0;
+  background-color: #FFE8DA;
+  z-index: 10;
+}
+
+.nav-buttons {
+  width: 71.875rem;
+  margin: 0 auto;
+}
+
+.running-head {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  gap: 0.625rem;
+  align-self: stretch;
+  opacity: 0;
+  padding-bottom: 10px;
+  transition: opacity 0.5s ease;
+  visibility: hidden;
+}
+
+.running-head.visible {
+  opacity: 1;
+  display: flex;
+  visibility: visible;
+}
+
+p.running-title {
+  color: #654321;
+  text-align: center;
+  font-family: VTC Du Bois;
+  font-size: 1.875rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+p.running-sub {
+  color: #654321;
+  text-align: center;
+  font-family: VTC Du Bois;
+  font-size: 1.875rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.body-container {
+  display: flex;
+  width: 71.875rem;
+  padding-top: 50px;
+  padding-bottom: 100px;
+  flex-direction: column;
+  align-items: center;
+  gap: 5rem;
+}
+
+.nav-buttons {
+  display: flex;
+  padding-top: 30px;
+  padding-bottom: 15px;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  row-gap: 1.875rem;
+  align-self: stretch;
+  flex-wrap: wrap;
+}
+
+a.nav {
+  text-decoration: none;
+  scroll-behavior: smooth;
+}
+
+.button {
+  display: flex;
+  padding: 0.3125rem 2rem;
+  justify-content: center;
+  align-items: center;
+  gap: 0.625rem;
+  border-radius: 2.1875rem;
+  background: #654321;
+  color: #FFE8DA;
+  font-family: Public Sans;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.button:hover {
+  transform: scale(1.025);
+}
+
+.title-section {
+  display: flex;
+  width: 71.875rem;
+  padding-top: 10px;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.titles {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-self: stretch;
+}
+
+h1.left-title {
+  color: #654321;
+  font-family: VTC Du Bois;
+  font-size: 7.8125rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 100%; /* 7.8125rem */
+  letter-spacing: 0.23438rem;
+}
+
+h2.right-title {
+  color: #654321;
+  text-align: right;
+  font-family: VTC Du Bois;
+  font-size: 5rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 115%; /* 6rem */
+}
+
+.authors {
+  align-self: stretch;
+  color: #654321;
+  text-align: center;
+  font-family: Public Sans;
+  font-size: 1.125rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 1.25rem;
+  align-self: stretch;
+  scroll-margin-top: 9rem;
+}
+
+h3 {
+  align-self: stretch;
+  color: #654321;
+  font-family: VTC Du Bois;
+  font-size: 4.125rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 0.0675rem;
+  text-align: left;
+}
+
+p.section-text {
+  align-self: stretch;
+  color: #654321;
+  font-family: Public Sans;
+  font-size: 1.125rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%; /* 2.34375rem */
+}
+
+p.editor-note {
+  align-self: stretch;
+  color: red;
+  font-family: Public Sans;
+  font-size: 1.125rem;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 150%; /* 2.34375rem */
+}
+
+.frame {
+  display: flex;
+  padding: 0.625rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 0.625rem;
+  align-self: stretch;
+  background: #654321;
+}
+
+.virtual-tour {
+  height: 40.42969rem;
+  align-self: stretch;
+  padding: 0;
+  border: none;
+}
+
+.center-title {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
+  align-self: stretch;
+  color: #654321;
+  font-family: "VTC Du Bois";
+  font-size: 50px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 1.5px;
+}
+
+.viz-options {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 1.25rem;
+  align-self: stretch;
+}
+
+.viz-tabs {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  align-content: flex-start;
+  gap: 0.625rem;
+  align-self: stretch;
+  flex-wrap: wrap;
+}
+
+.tab {
+  display: flex;
+  padding: 0.3125rem 1.25rem;
+  justify-content: center;
+  align-items: center;
+  gap: 0.625rem;
+  border-radius: 2.1875rem;
+  border: 3px solid #654321;
+  color: #654321;
+  font-family: "Public Sans";
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.active {
+  border-radius: 2.1875rem;
+  background: #654321;
+  color: #FFE8DA;
+}
+
+.tab:hover {
+  transform: scale(1.025);
+}
+
+.viz-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 3.75rem;
+  align-self: stretch;
+}
+
+.viz {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.625rem;
+  align-self: stretch;
+}
+
+.viz-embed {
+  display: flex;
+  padding: 0.625rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 0.625rem;
+  align-self: stretch;
+}
+
+.iframe {
+  flex: 1 0 0;
+  align-self: stretch;
+  background: #52FF00;
+}
+
+.options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-self: stretch;
+  color: #654321;
+  text-align: center;
+  font-family: "Public Sans";
+  font-size: 1.125rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.newtab, .newtab:visited {
+  color: #654321;
+  text-align: center;
+  font-family: "Public Sans";
+  font-size: 1.125rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-decoration-line: underline;
+}
+
+.viz-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 0.5rem;
+  align-self: stretch;
+}
+
+.subsection {
+  display: flex;
+  padding: 1.5rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 0rem;
+  align-self: stretch;
+  border-radius: 1.875rem;
+  border: 4px solid #654321;
+  transition: gap 0.3s ease;
+  transition-delay: 0.5s;
+}
+
+.inspiration-body, .methodology-body, .reflection-body, .citations-body, #instructions {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 1rem;
+  align-self: stretch;
+}
+
+.subsection-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-self: stretch;
+  padding-bottom: 0px;
+}
+
+.ss-title {
+  flex: 1 0 0;
+  color: #654321;
+  font-family: "VTC Du Bois";
+  font-size: 1.875rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.chevron {
+  width: 2.3125rem;
+  height: 1.5625rem;
+  fill: #654321;
+  transition: transform 0.3s ease, scale 0.3s ease;
+  cursor: pointer;
+}
+
+.chevron:hover {
+  transform: scale(1.1);
+}
+
+.inspiration-body, .methodology-body {
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.5s ease, opacity 0.5s ease, padding 0.5s ease, visibility 0.5s;
+  visibility: hidden;
+}
+
+.expanded {
+  max-height: 1000px; /* Adjust to fit content */
+  opacity: 1;
+  transition: max-height 0.5s ease, opacity 0.5s ease, padding 0.5s ease;
+  visibility: visible;
+  gap: 1.25rem;
+}
+
+.inspiration-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.25rem;
+  align-self: stretch;
+}
+
+.inspo-vid {
+  display: flex;
+  width: 50rem;
+  height: 28.125rem;
+  padding: 0.625rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.625rem;
+
+  background: #654321;
+}
+
+.inspo-embed {
+  width: 100%;
+  height: 100%;
+}
+
+.inspo-caption {
+  align-self: stretch;
+
+  color: #654321;
+  text-align: center;
+  font-family: "Public Sans";
+  font-size: 1.125rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%; /* 1.6875rem */
+}
+
+.ss-text {
+  align-self: stretch;
+
+  color: #654321;
+  font-family: "Public Sans";
+  font-size: 1.125rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%; /* 1.6875rem */
+}
+
+.viz-embed {
+  align-self: stretch;
+  aspect-ratio: 16/12.75;
+}
+
+.viz-embed iframe {
+  width: 110%;
+  height: 100%;
+  scale: 95%;
+  transform: translate(-5%);
+}
+
+p.ref {
+  padding-left: 3rem;
+  text-indent: -3rem;
+  font-size: 0.75rem;
+}
+
+.ref-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.left-col, .right-col {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.indent {
+  padding-left: 3rem;
+}
+
+p.video-caption {
+  color: #654321;
+  text-align: center;
+  font-family: Public Sans;
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
