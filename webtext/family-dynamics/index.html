@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Black Family Dynamics</title>
+        <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+        <link href="https://api.mapbox.com/mapbox-gl-js/v2.12.0/mapbox-gl.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="style.css">
+        <script src="jquery-3.1.1.min.js"></script>
+        <script src="https://api.mapbox.com/mapbox-gl-js/v2.12.0/mapbox-gl.js"></script>
+    </head>
+    <body>
+
+        <div id="map"></div>
+        <div class="calculation-box">
+            <h1 class="title">BLACK FAMILY DYNAMICS.</h1>
+            <p class="subtitle">The map below contains data regarding the proportion of children in foster care who are Black across the United States.<br>Click on each state to see how this proportion has changed betwen 2000 and 2020.</p>
+        </div>
+        <script type="text/javascript">
+            var mapData;
+            function getJson(data) {
+                // data 就是要取的json数据
+                console.log(data);
+                mapData = data.features;
+                // 可以在函数内部对json数据进行处理
+            }
+            mapboxgl.accessToken = 'pk.eyJ1Ijoiam9zaHRvcm5xdSIsImEiOiJjbDZ6ZmhuZWcwMHh1M3VxZjB3cnVzY3NtIn0.5A6qMlIy1NC1h4z86dgmHw';
+            /*const geojson = {
+                'type': 'FeatureCollection',
+                'features': [
+                    {
+                        'type': 'Feature',
+                        'properties': {
+                            'name': 'Arizona',
+                            'description': '2018: 11% | 2019: 12% | 2020: 11%',
+                            'height': 5000
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [-111.81062532837618, 34.41328577627822]
+                        }
+                    }, {
+                        'type': 'Feature',
+                        'properties': {
+                            'name': 'Aconcagua',
+                            'height': 6961
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [-70.0112, -32.653197]
+                        }
+                    }, {
+                        'type': 'Feature',
+                        'properties': {
+                            'name': 'Vinson Massif',
+                            'height': 4892
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [-85.617147, -78.525483]
+                        }
+                    }, {
+                        'type': 'Feature',
+                        'properties': {
+                            'name': 'Kilimanjaro',
+                            'height': 5895
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [37.353333, -3.075833]
+                        }
+                    }, {
+                        'type': 'Feature',
+                        'properties': {
+                            'name': 'Elbrus',
+                            'height': 5642
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [42.439167, 43.355]
+                        }
+                    }, {
+                        'type': 'Feature',
+                        'properties': {
+                            'name': 'Puncak Jaya',
+                            'height': 4884
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [137.158333, -4.078889]
+                        }
+                    }, {
+                        'type': 'Feature',
+                        'properties': {
+                            'name': 'Mauna Kea',
+                            'height': 4205
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [-155.468056, 19.820667]
+                        }
+                    }
+                ]
+            };*/
+
+            const map = new mapboxgl.Map({
+                container: 'map',
+                style: 'mapbox://styles/arjunphull/clvmx2q5401ao01q1ei1xd5k0',
+                center: [
+                    -97.486052, 37.830348
+                ],
+                pitch: 45,
+                zoom: 4.0
+            });
+            let hoveredStateId = null;
+            map.on('load', () => {
+                map.addSource('states', {
+                    'type': 'geojson',
+                    'data': 'https://docs.mapbox.com/mapbox-gl-js/assets/us_states.geojson'
+                });
+
+                // The feature-state dependent fill-opacity expression will render the hover effect
+                // when a feature's hover state is set to true.
+                map.addLayer({
+                    'id': 'state-fills',
+                    'type': 'fill',
+                    'source': 'states',
+                    'layout': {},
+                    'paint': {
+                        'fill-color': '#654321',
+                        'fill-opacity': [
+                            'case',
+                            [
+                                'boolean',
+                                [
+                                    'feature-state', 'hover'
+                                ],
+                                false
+                            ],
+                            0.75,
+                            0.5
+                        ]
+                    }
+                });
+
+                map.addLayer({
+                    'id': 'state-borders',
+                    'type': 'line',
+                    'source': 'states',
+                    'layout': {},
+                    'paint': {
+                        'line-color': '#654321',
+                        'line-width': 2
+                    }
+                });
+
+                // When the user moves their mouse over the state-fill layer, we'll update the
+                // feature state for the feature under the mouse.
+                map.on('mousemove', 'state-fills', (e) => {
+                    if (e.features.length > 0) {
+                        if (hoveredStateId !== null) {
+                            map.setFeatureState({
+                                source: 'states',
+                                id: hoveredStateId
+                            }, {hover: false});
+                        }
+                        hoveredStateId = e
+                            .features[0]
+                            .id;
+                        map.setFeatureState({
+                            source: 'states',
+                            id: hoveredStateId
+                        }, {hover: true});
+                    }
+                });
+
+                // When the mouse leaves the state-fill layer, update the feature state of the
+                // previously hovered feature.
+                map.on('mouseleave', 'state-fills', () => {
+                    if (hoveredStateId !== null) {
+                        map.setFeatureState({
+                            source: 'states',
+                            id: hoveredStateId
+                        }, {hover: false});
+                    }
+                    hoveredStateId = null;
+                });
+                var features=mapData;
+                console.log(features)
+                for (const marker of features) {
+                    // Create a DOM element for each marker.
+                    const el = document.createElement('div');
+                    el.className = 'marker';
+                   // const size = marker.properties.height / 100;
+                    const size = 50;
+                    el.style.width = `${size}px`;
+                    el.style.height = `${size}px`;
+
+                    // Add a popup displayed on click for each marker
+                    const popup = new mapboxgl.Popup({offset: 25});
+                    popup.setHTML(`<h2>${marker.properties.STATE_NAME}</h2>${marker.properties.description}<br/>`);
+
+                    // Add markers to the map.
+                    new mapboxgl
+                        .Marker({
+                            element: el,
+                            // Point markers toward the nearest horizon
+                            rotationAlignment: 'horizon',
+                            offset: [
+                                0, -size / 2
+                            ]
+                        })
+                        .setLngLat(marker.geometry.coordinates)
+                        .setPopup(popup)
+                        .addTo(map);
+                }
+            });
+
+        </script>
+        <!-- 2. 引入json文件 -->
+        <script type="text/javascript" src="./data.json"></script>
+    </body>
+</html>

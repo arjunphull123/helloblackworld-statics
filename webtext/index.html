@@ -70,20 +70,20 @@
             Select each tab below to explore the corresponding visualization.
           </p>
         <div class="viz-tabs">
-          <div class="tab active" id="blackSpace">Black Space and the Environment</div>
-          <div class="tab" id="blackLiterature">The Blossoming of Black Literature</div>
-          <div class="tab" id="healthIncome">Health and Income Across Race</div>
-          <div class="tab" id="homeownership">Homeownership Across Race</div>
-          <div class="tab" id="familyDynamics">Black Family Dynamics</div>
-          <div class="tab" id="illiteracy">Illiteracy Across Race</div>
-          <div class="tab" id="incarceration">Incarceration Across Race</div>
+          <div class="tab active" id="blackSpace" onclick="switchContent(this.id);">Black Space and the Environment</div>
+          <div class="tab" id="blackLiterature" onclick="switchContent(this.id);">The Blossoming of Black Literature</div>
+          <div class="tab" id="healthIncome" onclick="switchContent(this.id);">Health and Income Across Race</div>
+          <div class="tab" id="homeownership" onclick="switchContent(this.id);">Homeownership Across Race</div>
+          <div class="tab" id="familyDynamics" onclick="switchContent(this.id);">Black Family Dynamics</div>
+          <div class="tab" id="illiteracy" onclick="switchContent(this.id);">Illiteracy Across Race</div>
+          <div class="tab" id="incarceration" onclick="switchContent(this.id);">Incarceration Across Race</div>
         </div>
       </div>
 
       <div class="viz-section" id="viz">
         <div class="viz">
           <div class="viz-embed">
-            <iframe id="viz-embed" src="https://dubois-black-space.netlify.app/" frameborder="0"></iframe>
+            <iframe id="viz-embed" src="black-space/index.html" frameborder="0"></iframe>
           </div>
           <div class="options">
             <p id="author">Created by Arjun Phull</p>
@@ -99,9 +99,9 @@
               </svg>
             </div>
             <div class="inspiration-body">
-              <div class="inspo-vid">
-                <iframe class="inspo-embed" id="inspo-embed" src="https://www.youtube.com/embed/erZ-Q_Doluw?si=VbRScsZRYV4P0jiK" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-              </div>
+              <video class="inspo-embed" controls>
+                <source id="inspo-embed" src="vids/health.mp4" type="video/mp4">
+              </video>
               <p class="inspo-caption" id="inspo-caption">Du Bois visualized demographics among Black Philadelphians in engaging and intuitive ways.</p>
               <p class="ss-text" id="inspo">
                 This visualization was inspired by Du Bois’s exploration of differential health data among Black and white Pennsylvanians, which you can see in the YouTube video in this section. Du Bois’s original data visualization explored how death rates differed between Black and white Americans across all age groups, using a color-coded bar chart to illustrate the stark difference. Du Bois also famously mapped Philadelphia’s Seventh Ward, creating a visualization in which he encapsulated spatial, socioeconomic, and demographic data. In his charts, Du Bois thought outside the box, using creative spacing and color coding to redefine the purpose of a bar graph and area chart. His creative thinking inspired me to envision my own data visualization, one that leveraged the breadth of geospatial data with the visual familiarity of a bar graph. What you see in front of you is a 3D map of the state of Pennsylvania, reimagined as a bar graph. Each county is colored on a color scale pulled directly from Du Bois’s visualizations, representing the proportion of Black and African-American populations in each county. The heights of each county correspond to normalized rates of environmentally influenced conditions, including asthma, COPD, and lung cancer. The melding of maps and bar graphs into one cohesive visualization pays homage to Du Bois’s eclectic approach to data visualization.
@@ -180,10 +180,6 @@
 
       <p class="section-text">
         The webtext's content and visualizations' data were compiled by Jade Flint of Howard University.
-      </p>
-
-      <p class="section-text">
-        The virtual exhibit was developed by Amelia Matheson, a Student Developer at the Center for Digital Humanities and undergraduate student at the University of Arizona.
       </p>
     </div>
 

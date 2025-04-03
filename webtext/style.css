@@ -432,7 +432,7 @@ p.editor-note {
 }
 
 .expanded {
-  max-height: 1000px; /* Adjust to fit content */
+  max-height: 100rem; /* Adjust to fit content */
   opacity: 1;
   transition: max-height 0.5s ease, opacity 0.5s ease, padding 0.5s ease;
   visibility: visible;
@@ -448,27 +448,13 @@ p.editor-note {
   align-self: stretch;
 }
 
-.inspo-vid {
-  display: flex;
-  width: 50rem;
-  height: 28.125rem;
-  padding: 0.625rem;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 0.625rem;
-
-  background: #654321;
-}
-
 .inspo-embed {
-  width: 100%;
-  height: 100%;
+  width: 80%;
+  aspect-ratio: 16/9;
 }
 
 .inspo-caption {
   align-self: stretch;
-
   color: #654321;
   text-align: center;
   font-family: "Public Sans";
